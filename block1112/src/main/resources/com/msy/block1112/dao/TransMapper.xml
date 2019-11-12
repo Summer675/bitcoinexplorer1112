@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msy.block1112.dao.TransMapper">
-  <resultMap id="BaseResultMap" type="com.msy.block1112.po.Trans">
+  <resultMap id="transmap" type="com.msy.block1112.po.Trans">
     <id column="transId" jdbcType="INTEGER" property="transid" />
     <result column="block_id" jdbcType="INTEGER" property="blockId" />
     <result column="txHash" jdbcType="CHAR" property="txhash" />
@@ -17,13 +17,13 @@
     <result column="fee_per_byte" jdbcType="DOUBLE" property="feePerByte" />
     <result column="sizeOndisk" jdbcType="INTEGER" property="sizeondisk" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="tran">
     transId, block_id, txHash, amount, total_input, total_output, time, confirmations, 
     status, weight, fee, fee_per_weight, fee_per_byte, sizeOndisk
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="transmap">
     select 
-    <include refid="Base_Column_List" />
+    <include refid="tran" />
     from trans
     where transId = #{transid,jdbcType=INTEGER}
   </select>
@@ -196,116 +196,5 @@
       sizeOndisk = #{sizeondisk,jdbcType=INTEGER}
     where transId = #{transid,jdbcType=INTEGER}
   </update>
-  <resultMap id="BaseResultMap" type="com.msy.block1112.po.Trans">
-    <result column="TxId" jdbcType="INTEGER" property="txid" />
-    <result column="BlkId" jdbcType="CHAR" property="blkid" />
-    <result column="TxHash" jdbcType="CHAR" property="txhash" />
-    <result column="Version" jdbcType="INTEGER" property="version" />
-    <result column="InputCount" jdbcType="BIGINT" property="inputcount" />
-    <result column="OutputCount" jdbcType="BIGINT" property="outputcount" />
-    <result column="TotalOutAmount" jdbcType="BIGINT" property="totaloutamount" />
-    <result column="TotalInAmount" jdbcType="BIGINT" property="totalinamount" />
-    <result column="TransFee" jdbcType="BIGINT" property="transfee" />
-    <result column="IsCoinbase" jdbcType="BIT" property="iscoinbase" />
-    <result column="IsHeightLock" jdbcType="BIT" property="isheightlock" />
-    <result column="IsTimeLock" jdbcType="BIT" property="istimelock" />
-    <result column="LockTimeValue" jdbcType="INTEGER" property="locktimevalue" />
-  </resultMap>
-  <insert id="insert" parameterType="com.msy.block1112.po.Trans">
-    insert into trans (TxId, BlkId, TxHash, 
-      Version, InputCount, OutputCount, 
-      TotalOutAmount, TotalInAmount, TransFee, 
-      IsCoinbase, IsHeightLock, IsTimeLock, 
-      LockTimeValue)
-    values (#{txid,jdbcType=INTEGER}, #{blkid,jdbcType=CHAR}, #{txhash,jdbcType=CHAR}, 
-      #{version,jdbcType=INTEGER}, #{inputcount,jdbcType=BIGINT}, #{outputcount,jdbcType=BIGINT}, 
-      #{totaloutamount,jdbcType=BIGINT}, #{totalinamount,jdbcType=BIGINT}, #{transfee,jdbcType=BIGINT}, 
-      #{iscoinbase,jdbcType=BIT}, #{isheightlock,jdbcType=BIT}, #{istimelock,jdbcType=BIT}, 
-      #{locktimevalue,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.msy.block1112.po.Trans">
-    insert into trans
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="txid != null">
-        TxId,
-      </if>
-      <if test="blkid != null">
-        BlkId,
-      </if>
-      <if test="txhash != null">
-        TxHash,
-      </if>
-      <if test="version != null">
-        Version,
-      </if>
-      <if test="inputcount != null">
-        InputCount,
-      </if>
-      <if test="outputcount != null">
-        OutputCount,
-      </if>
-      <if test="totaloutamount != null">
-        TotalOutAmount,
-      </if>
-      <if test="totalinamount != null">
-        TotalInAmount,
-      </if>
-      <if test="transfee != null">
-        TransFee,
-      </if>
-      <if test="iscoinbase != null">
-        IsCoinbase,
-      </if>
-      <if test="isheightlock != null">
-        IsHeightLock,
-      </if>
-      <if test="istimelock != null">
-        IsTimeLock,
-      </if>
-      <if test="locktimevalue != null">
-        LockTimeValue,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="txid != null">
-        #{txid,jdbcType=INTEGER},
-      </if>
-      <if test="blkid != null">
-        #{blkid,jdbcType=CHAR},
-      </if>
-      <if test="txhash != null">
-        #{txhash,jdbcType=CHAR},
-      </if>
-      <if test="version != null">
-        #{version,jdbcType=INTEGER},
-      </if>
-      <if test="inputcount != null">
-        #{inputcount,jdbcType=BIGINT},
-      </if>
-      <if test="outputcount != null">
-        #{outputcount,jdbcType=BIGINT},
-      </if>
-      <if test="totaloutamount != null">
-        #{totaloutamount,jdbcType=BIGINT},
-      </if>
-      <if test="totalinamount != null">
-        #{totalinamount,jdbcType=BIGINT},
-      </if>
-      <if test="transfee != null">
-        #{transfee,jdbcType=BIGINT},
-      </if>
-      <if test="iscoinbase != null">
-        #{iscoinbase,jdbcType=BIT},
-      </if>
-      <if test="isheightlock != null">
-        #{isheightlock,jdbcType=BIT},
-      </if>
-      <if test="istimelock != null">
-        #{istimelock,jdbcType=BIT},
-      </if>
-      <if test="locktimevalue != null">
-        #{locktimevalue,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+
 </mapper>
