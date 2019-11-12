@@ -31,6 +31,6 @@ public class BlockController {
     @GetMapping("/getBlockByHeight")
     public List<Block> getBlockByHeight(@RequestParam Integer height){
         return blockMapper.getblockDetailByHeight(height);
-         
+
     }
 }

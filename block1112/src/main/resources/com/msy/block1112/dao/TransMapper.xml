@@ -27,6 +27,18 @@
     from trans
     where transId = #{transid,jdbcType=INTEGER}
   </select>
+  <select id="getTransByTxhash" parameterType="java.lang.String" resultMap="transmap">
+    select
+    <include refid="tran" />
+    from trans
+    where txhash = #{txhash,jdbcType=CHAR}
+  </select>
+  <select id="list"   resultMap="transmap">
+    select
+    <include refid="tran" />
+    from trans
+
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from trans
     where transId = #{transid,jdbcType=INTEGER}

@@ -1,133 +1,145 @@
 package com.msy.block1112.po;
 
 public class Trans {
-    private Integer txid;
+    private Integer transId;
 
-    private String blkid;
+    private Integer block_id;
 
-    private String txhash;
+    private String txHash;
 
-    private Integer version;
+    private Double amount;
 
-    private Long inputcount;
 
-    private Long outputcount;
 
-    private Long totaloutamount;
+    private Double total_input;
 
-    private Long totalinamount;
+    private Double total_output;
 
-    private Long transfee;
+    private Long time;
 
-    private Boolean iscoinbase;
+    private Integer confirmations;
 
-    private Boolean isheightlock;
+    private Integer status;
 
-    private Boolean istimelock;
+    private Integer weight;
 
-    private Integer locktimevalue;
+    private Double fee;
 
-    public Integer getTxid() {
-        return txid;
+    private Double fee_per_weight;
+
+    private Double fee_per_byte;
+
+    private Integer sizeOndisk;
+
+    public Integer getTransId() {
+        return transId;
     }
 
-    public void setTxid(Integer txid) {
-        this.txid = txid;
+    public void setTransId(Integer transId) {
+        this.transId = transId;
     }
 
-    public String getBlkid() {
-        return blkid;
+    public Integer getBlock_id() {
+        return block_id;
     }
 
-    public void setBlkid(String blkid) {
-        this.blkid = blkid == null ? null : blkid.trim();
+    public void setBlock_id(Integer block_id) {
+        this.block_id = block_id;
     }
 
-    public String getTxhash() {
-        return txhash;
+    public String getTxHash() {
+        return txHash;
     }
 
-    public void setTxhash(String txhash) {
-        this.txhash = txhash == null ? null : txhash.trim();
+    public void setTxHash(String txHash) {
+        this.txHash = txHash;
     }
 
-    public Integer getVersion() {
-        return version;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setVersion(Integer version) {
-        this.version = version;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
-    public Long getInputcount() {
-        return inputcount;
+    public Double getTotal_input() {
+        return total_input;
     }
 
-    public void setInputcount(Long inputcount) {
-        this.inputcount = inputcount;
+    public void setTotal_input(Double total_input) {
+        this.total_input = total_input;
     }
 
-    public Long getOutputcount() {
-        return outputcount;
+    public Double getTotal_output() {
+        return total_output;
     }
 
-    public void setOutputcount(Long outputcount) {
-        this.outputcount = outputcount;
+    public void setTotal_output(Double total_output) {
+        this.total_output = total_output;
     }
 
-    public Long getTotaloutamount() {
-        return totaloutamount;
+    public Long getTime() {
+        return time;
     }
 
-    public void setTotaloutamount(Long totaloutamount) {
-        this.totaloutamount = totaloutamount;
+    public void setTime(Long time) {
+        this.time = time;
     }
 
-    public Long getTotalinamount() {
-        return totalinamount;
+    public Integer getConfirmations() {
+        return confirmations;
     }
 
-    public void setTotalinamount(Long totalinamount) {
-        this.totalinamount = totalinamount;
+    public void setConfirmations(Integer confirmations) {
+        this.confirmations = confirmations;
     }
 
-    public Long getTransfee() {
-        return transfee;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setTransfee(Long transfee) {
-        this.transfee = transfee;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public Boolean getIscoinbase() {
-        return iscoinbase;
+    public Integer getWeight() {
+        return weight;
     }
 
-    public void setIscoinbase(Boolean iscoinbase) {
-        this.iscoinbase = iscoinbase;
+    public void setWeight(Integer weight) {
+        this.weight = weight;
     }
 
-    public Boolean getIsheightlock() {
-        return isheightlock;
+    public Double getFee() {
+        return fee;
     }
 
-    public void setIsheightlock(Boolean isheightlock) {
-        this.isheightlock = isheightlock;
+    public void setFee(Double fee) {
+        this.fee = fee;
     }
 
-    public Boolean getIstimelock() {
-        return istimelock;
+    public Double getFee_per_weight() {
+        return fee_per_weight;
     }
 
-    public void setIstimelock(Boolean istimelock) {
-        this.istimelock = istimelock;
+    public void setFee_per_weight(Double fee_per_weight) {
+        this.fee_per_weight = fee_per_weight;
     }
 
-    public Integer getLocktimevalue() {
-        return locktimevalue;
+    public Double getFee_per_byte() {
+        return fee_per_byte;
     }
 
-    public void setLocktimevalue(Integer locktimevalue) {
-        this.locktimevalue = locktimevalue;
+    public void setFee_per_byte(Double fee_per_byte) {
+        this.fee_per_byte = fee_per_byte;
+    }
+
+    public Integer getSizeOndisk() {
+        return sizeOndisk;
+    }
+
+    public void setSizeOndisk(Integer sizeOndisk) {
+        this.sizeOndisk = sizeOndisk;
     }
 }
