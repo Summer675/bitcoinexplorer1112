@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msy.block1112.dao.TransDetailMapper">
+  <resultMap id="BaseResultMap" type="com.msy.block1112.po.TransDetail">
+    <id column="tx_detail_id" jdbcType="BIGINT" property="txDetailId" />
+    <result column="transId" jdbcType="INTEGER" property="transid" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tx_detail_id, transId, address, amount, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from transdetail
+    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from transdetail
+    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.msy.block1112.po.TransDetail">
+    insert into transdetail (tx_detail_id, transId, address, 
+      amount, type)
+    values (#{txDetailId,jdbcType=BIGINT}, #{transid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DOUBLE}, #{type,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.msy.block1112.po.TransDetail">
+    insert into transdetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="txDetailId != null">
+        tx_detail_id,
+      </if>
+      <if test="transid != null">
+        transId,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="txDetailId != null">
+        #{txDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="transid != null">
+        #{transid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.msy.block1112.po.TransDetail">
+    update transdetail
+    <set>
+      <if test="transid != null">
+        transId = #{transid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+    </set>
+    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.msy.block1112.po.TransDetail">
+    update transdetail
+    set transId = #{transid,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DOUBLE},
+      type = #{type,jdbcType=TINYINT}
+    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+  </update>
+</mapper>

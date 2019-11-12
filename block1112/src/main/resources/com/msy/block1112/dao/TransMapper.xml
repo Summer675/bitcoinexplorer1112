@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msy.block1112.dao.TransMapper">
+  <resultMap id="BaseResultMap" type="com.msy.block1112.po.Trans">
+    <id column="transId" jdbcType="INTEGER" property="transid" />
+    <result column="block_id" jdbcType="INTEGER" property="blockId" />
+    <result column="txHash" jdbcType="CHAR" property="txhash" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+    <result column="total_input" jdbcType="DOUBLE" property="totalInput" />
+    <result column="total_output" jdbcType="DOUBLE" property="totalOutput" />
+    <result column="time" jdbcType="BIGINT" property="time" />
+    <result column="confirmations" jdbcType="INTEGER" property="confirmations" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+    <result column="fee" jdbcType="DOUBLE" property="fee" />
+    <result column="fee_per_weight" jdbcType="DOUBLE" property="feePerWeight" />
+    <result column="fee_per_byte" jdbcType="DOUBLE" property="feePerByte" />
+    <result column="sizeOndisk" jdbcType="INTEGER" property="sizeondisk" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    transId, block_id, txHash, amount, total_input, total_output, time, confirmations, 
+    status, weight, fee, fee_per_weight, fee_per_byte, sizeOndisk
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trans
+    where transId = #{transid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from trans
+    where transId = #{transid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.msy.block1112.po.Trans">
+    insert into trans (transId, block_id, txHash, 
+      amount, total_input, total_output, 
+      time, confirmations, status, 
+      weight, fee, fee_per_weight, 
+      fee_per_byte, sizeOndisk)
+    values (#{transid,jdbcType=INTEGER}, #{blockId,jdbcType=INTEGER}, #{txhash,jdbcType=CHAR}, 
+      #{amount,jdbcType=DOUBLE}, #{totalInput,jdbcType=DOUBLE}, #{totalOutput,jdbcType=DOUBLE}, 
+      #{time,jdbcType=BIGINT}, #{confirmations,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{weight,jdbcType=INTEGER}, #{fee,jdbcType=DOUBLE}, #{feePerWeight,jdbcType=DOUBLE}, 
+      #{feePerByte,jdbcType=DOUBLE}, #{sizeondisk,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.msy.block1112.po.Trans">
+    insert into trans
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="transid != null">
+        transId,
+      </if>
+      <if test="blockId != null">
+        block_id,
+      </if>
+      <if test="txhash != null">
+        txHash,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="totalInput != null">
+        total_input,
+      </if>
+      <if test="totalOutput != null">
+        total_output,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="confirmations != null">
+        confirmations,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="fee != null">
+        fee,
+      </if>
+      <if test="feePerWeight != null">
+        fee_per_weight,
+      </if>
+      <if test="feePerByte != null">
+        fee_per_byte,
+      </if>
+      <if test="sizeondisk != null">
+        sizeOndisk,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="transid != null">
+        #{transid,jdbcType=INTEGER},
+      </if>
+      <if test="blockId != null">
+        #{blockId,jdbcType=INTEGER},
+      </if>
+      <if test="txhash != null">
+        #{txhash,jdbcType=CHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInput != null">
+        #{totalInput,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutput != null">
+        #{totalOutput,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=BIGINT},
+      </if>
+      <if test="confirmations != null">
+        #{confirmations,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=DOUBLE},
+      </if>
+      <if test="feePerWeight != null">
+        #{feePerWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="feePerByte != null">
+        #{feePerByte,jdbcType=DOUBLE},
+      </if>
+      <if test="sizeondisk != null">
+        #{sizeondisk,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.msy.block1112.po.Trans">
+    update trans
+    <set>
+      <if test="blockId != null">
+        block_id = #{blockId,jdbcType=INTEGER},
+      </if>
+      <if test="txhash != null">
+        txHash = #{txhash,jdbcType=CHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="totalInput != null">
+        total_input = #{totalInput,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutput != null">
+        total_output = #{totalOutput,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=BIGINT},
+      </if>
+      <if test="confirmations != null">
+        confirmations = #{confirmations,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=DOUBLE},
+      </if>
+      <if test="feePerWeight != null">
+        fee_per_weight = #{feePerWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="feePerByte != null">
+        fee_per_byte = #{feePerByte,jdbcType=DOUBLE},
+      </if>
+      <if test="sizeondisk != null">
+        sizeOndisk = #{sizeondisk,jdbcType=INTEGER},
+      </if>
+    </set>
+    where transId = #{transid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.msy.block1112.po.Trans">
+    update trans
+    set block_id = #{blockId,jdbcType=INTEGER},
+      txHash = #{txhash,jdbcType=CHAR},
+      amount = #{amount,jdbcType=DOUBLE},
+      total_input = #{totalInput,jdbcType=DOUBLE},
+      total_output = #{totalOutput,jdbcType=DOUBLE},
+      time = #{time,jdbcType=BIGINT},
+      confirmations = #{confirmations,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      fee = #{fee,jdbcType=DOUBLE},
+      fee_per_weight = #{feePerWeight,jdbcType=DOUBLE},
+      fee_per_byte = #{feePerByte,jdbcType=DOUBLE},
+      sizeOndisk = #{sizeondisk,jdbcType=INTEGER}
+    where transId = #{transid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.msy.block1112.po.Trans">
+    <result column="TxId" jdbcType="INTEGER" property="txid" />
+    <result column="BlkId" jdbcType="CHAR" property="blkid" />
+    <result column="TxHash" jdbcType="CHAR" property="txhash" />
+    <result column="Version" jdbcType="INTEGER" property="version" />
+    <result column="InputCount" jdbcType="BIGINT" property="inputcount" />
+    <result column="OutputCount" jdbcType="BIGINT" property="outputcount" />
+    <result column="TotalOutAmount" jdbcType="BIGINT" property="totaloutamount" />
+    <result column="TotalInAmount" jdbcType="BIGINT" property="totalinamount" />
+    <result column="TransFee" jdbcType="BIGINT" property="transfee" />
+    <result column="IsCoinbase" jdbcType="BIT" property="iscoinbase" />
+    <result column="IsHeightLock" jdbcType="BIT" property="isheightlock" />
+    <result column="IsTimeLock" jdbcType="BIT" property="istimelock" />
+    <result column="LockTimeValue" jdbcType="INTEGER" property="locktimevalue" />
+  </resultMap>
+  <insert id="insert" parameterType="com.msy.block1112.po.Trans">
+    insert into trans (TxId, BlkId, TxHash, 
+      Version, InputCount, OutputCount, 
+      TotalOutAmount, TotalInAmount, TransFee, 
+      IsCoinbase, IsHeightLock, IsTimeLock, 
+      LockTimeValue)
+    values (#{txid,jdbcType=INTEGER}, #{blkid,jdbcType=CHAR}, #{txhash,jdbcType=CHAR}, 
+      #{version,jdbcType=INTEGER}, #{inputcount,jdbcType=BIGINT}, #{outputcount,jdbcType=BIGINT}, 
+      #{totaloutamount,jdbcType=BIGINT}, #{totalinamount,jdbcType=BIGINT}, #{transfee,jdbcType=BIGINT}, 
+      #{iscoinbase,jdbcType=BIT}, #{isheightlock,jdbcType=BIT}, #{istimelock,jdbcType=BIT}, 
+      #{locktimevalue,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.msy.block1112.po.Trans">
+    insert into trans
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="txid != null">
+        TxId,
+      </if>
+      <if test="blkid != null">
+        BlkId,
+      </if>
+      <if test="txhash != null">
+        TxHash,
+      </if>
+      <if test="version != null">
+        Version,
+      </if>
+      <if test="inputcount != null">
+        InputCount,
+      </if>
+      <if test="outputcount != null">
+        OutputCount,
+      </if>
+      <if test="totaloutamount != null">
+        TotalOutAmount,
+      </if>
+      <if test="totalinamount != null">
+        TotalInAmount,
+      </if>
+      <if test="transfee != null">
+        TransFee,
+      </if>
+      <if test="iscoinbase != null">
+        IsCoinbase,
+      </if>
+      <if test="isheightlock != null">
+        IsHeightLock,
+      </if>
+      <if test="istimelock != null">
+        IsTimeLock,
+      </if>
+      <if test="locktimevalue != null">
+        LockTimeValue,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="txid != null">
+        #{txid,jdbcType=INTEGER},
+      </if>
+      <if test="blkid != null">
+        #{blkid,jdbcType=CHAR},
+      </if>
+      <if test="txhash != null">
+        #{txhash,jdbcType=CHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="inputcount != null">
+        #{inputcount,jdbcType=BIGINT},
+      </if>
+      <if test="outputcount != null">
+        #{outputcount,jdbcType=BIGINT},
+      </if>
+      <if test="totaloutamount != null">
+        #{totaloutamount,jdbcType=BIGINT},
+      </if>
+      <if test="totalinamount != null">
+        #{totalinamount,jdbcType=BIGINT},
+      </if>
+      <if test="transfee != null">
+        #{transfee,jdbcType=BIGINT},
+      </if>
+      <if test="iscoinbase != null">
+        #{iscoinbase,jdbcType=BIT},
+      </if>
+      <if test="isheightlock != null">
+        #{isheightlock,jdbcType=BIT},
+      </if>
+      <if test="istimelock != null">
+        #{istimelock,jdbcType=BIT},
+      </if>
+      <if test="locktimevalue != null">
+        #{locktimevalue,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

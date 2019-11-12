@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msy.block1112.dao.BlockMapper">
+  <resultMap id="BaseResultMap" type="com.msy.block1112.po.Block">
+    <id column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="blockchain_id" jdbcType="INTEGER" property="blockchainId" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="tx_size" jdbcType="INTEGER" property="txSize" />
+    <result column="size_on_disk" jdbcType="BIGINT" property="sizeOnDisk" />
+    <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
+    <result column="prev_blockhash" jdbcType="CHAR" property="prevBlockhash" />
+    <result column="next_blockhash" jdbcType="CHAR" property="nextBlockhash" />
+    <result column="output_total" jdbcType="DOUBLE" property="outputTotal" />
+    <result column="transaction_fees" jdbcType="DOUBLE" property="transactionFees" />
+    <result column="merkle_root" jdbcType="CHAR" property="merkleRoot" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    blockhash, blockchain_id, height, time, tx_size, size_on_disk, difficulty, prev_blockhash, 
+    next_blockhash, output_total, transaction_fees, merkle_root
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from block
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from block
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.msy.block1112.po.Block">
+    insert into block (blockhash, blockchain_id, height, 
+      time, tx_size, size_on_disk, 
+      difficulty, prev_blockhash, next_blockhash, 
+      output_total, transaction_fees, merkle_root
+      )
+    values (#{blockhash,jdbcType=CHAR}, #{blockchainId,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIMESTAMP}, #{txSize,jdbcType=INTEGER}, #{sizeOnDisk,jdbcType=BIGINT}, 
+      #{difficulty,jdbcType=DOUBLE}, #{prevBlockhash,jdbcType=CHAR}, #{nextBlockhash,jdbcType=CHAR}, 
+      #{outputTotal,jdbcType=DOUBLE}, #{transactionFees,jdbcType=DOUBLE}, #{merkleRoot,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.msy.block1112.po.Block">
+    insert into block
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blockhash != null">
+        blockhash,
+      </if>
+      <if test="blockchainId != null">
+        blockchain_id,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="txSize != null">
+        tx_size,
+      </if>
+      <if test="sizeOnDisk != null">
+        size_on_disk,
+      </if>
+      <if test="difficulty != null">
+        difficulty,
+      </if>
+      <if test="prevBlockhash != null">
+        prev_blockhash,
+      </if>
+      <if test="nextBlockhash != null">
+        next_blockhash,
+      </if>
+      <if test="outputTotal != null">
+        output_total,
+      </if>
+      <if test="transactionFees != null">
+        transaction_fees,
+      </if>
+      <if test="merkleRoot != null">
+        merkle_root,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blockhash != null">
+        #{blockhash,jdbcType=CHAR},
+      </if>
+      <if test="blockchainId != null">
+        #{blockchainId,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txSize != null">
+        #{txSize,jdbcType=INTEGER},
+      </if>
+      <if test="sizeOnDisk != null">
+        #{sizeOnDisk,jdbcType=BIGINT},
+      </if>
+      <if test="difficulty != null">
+        #{difficulty,jdbcType=DOUBLE},
+      </if>
+      <if test="prevBlockhash != null">
+        #{prevBlockhash,jdbcType=CHAR},
+      </if>
+      <if test="nextBlockhash != null">
+        #{nextBlockhash,jdbcType=CHAR},
+      </if>
+      <if test="outputTotal != null">
+        #{outputTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="transactionFees != null">
+        #{transactionFees,jdbcType=DOUBLE},
+      </if>
+      <if test="merkleRoot != null">
+        #{merkleRoot,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.msy.block1112.po.Block">
+    update block
+    <set>
+      <if test="blockchainId != null">
+        blockchain_id = #{blockchainId,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="txSize != null">
+        tx_size = #{txSize,jdbcType=INTEGER},
+      </if>
+      <if test="sizeOnDisk != null">
+        size_on_disk = #{sizeOnDisk,jdbcType=BIGINT},
+      </if>
+      <if test="difficulty != null">
+        difficulty = #{difficulty,jdbcType=DOUBLE},
+      </if>
+      <if test="prevBlockhash != null">
+        prev_blockhash = #{prevBlockhash,jdbcType=CHAR},
+      </if>
+      <if test="nextBlockhash != null">
+        next_blockhash = #{nextBlockhash,jdbcType=CHAR},
+      </if>
+      <if test="outputTotal != null">
+        output_total = #{outputTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="transactionFees != null">
+        transaction_fees = #{transactionFees,jdbcType=DOUBLE},
+      </if>
+      <if test="merkleRoot != null">
+        merkle_root = #{merkleRoot,jdbcType=CHAR},
+      </if>
+    </set>
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.msy.block1112.po.Block">
+    update block
+    set blockchain_id = #{blockchainId,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      tx_size = #{txSize,jdbcType=INTEGER},
+      size_on_disk = #{sizeOnDisk,jdbcType=BIGINT},
+      difficulty = #{difficulty,jdbcType=DOUBLE},
+      prev_blockhash = #{prevBlockhash,jdbcType=CHAR},
+      next_blockhash = #{nextBlockhash,jdbcType=CHAR},
+      output_total = #{outputTotal,jdbcType=DOUBLE},
+      transaction_fees = #{transactionFees,jdbcType=DOUBLE},
+      merkle_root = #{merkleRoot,jdbcType=CHAR}
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.msy.block1112.po.Block">
+    <result column="Minner" jdbcType="VARCHAR" property="minner" />
+    <result column="Hash" jdbcType="VARCHAR" property="hash" />
+    <result column="Height" jdbcType="INTEGER" property="height" />
+    <result column="BlkId" jdbcType="CHAR" property="blkid" />
+    <result column="TxCount" jdbcType="INTEGER" property="txcount" />
+    <result column="Size" jdbcType="INTEGER" property="size" />
+    <result column="PreId" jdbcType="CHAR" property="preid" />
+    <result column="Timestamp" jdbcType="TIMESTAMP" property="timestamp" />
+    <result column="Nonce" jdbcType="BIGINT" property="nonce" />
+    <result column="Difficulty" jdbcType="INTEGER" property="difficulty" />
+    <result column="Bits" jdbcType="CHAR" property="bits" />
+    <result column="Version" jdbcType="INTEGER" property="version" />
+    <result column="TxMerkleRoot" jdbcType="CHAR" property="txmerkleroot" />
+  </resultMap>
+  <insert id="insert" parameterType="com.msy.block1112.po.Block">
+    insert into block (Minner, Hash, Height, 
+      BlkId, TxCount, Size, 
+      PreId, Timestamp, Nonce, 
+      Difficulty, Bits, Version, 
+      TxMerkleRoot)
+    values (#{minner,jdbcType=VARCHAR}, #{hash,jdbcType=VARCHAR}, #{height,jdbcType=INTEGER}, 
+      #{blkid,jdbcType=CHAR}, #{txcount,jdbcType=INTEGER}, #{size,jdbcType=INTEGER}, 
+      #{preid,jdbcType=CHAR}, #{timestamp,jdbcType=TIMESTAMP}, #{nonce,jdbcType=BIGINT}, 
+      #{difficulty,jdbcType=INTEGER}, #{bits,jdbcType=CHAR}, #{version,jdbcType=INTEGER}, 
+      #{txmerkleroot,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.msy.block1112.po.Block">
+    insert into block
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="minner != null">
+        Minner,
+      </if>
+      <if test="hash != null">
+        Hash,
+      </if>
+      <if test="height != null">
+        Height,
+      </if>
+      <if test="blkid != null">
+        BlkId,
+      </if>
+      <if test="txcount != null">
+        TxCount,
+      </if>
+      <if test="size != null">
+        Size,
+      </if>
+      <if test="preid != null">
+        PreId,
+      </if>
+      <if test="timestamp != null">
+        Timestamp,
+      </if>
+      <if test="nonce != null">
+        Nonce,
+      </if>
+      <if test="difficulty != null">
+        Difficulty,
+      </if>
+      <if test="bits != null">
+        Bits,
+      </if>
+      <if test="version != null">
+        Version,
+      </if>
+      <if test="txmerkleroot != null">
+        TxMerkleRoot,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="minner != null">
+        #{minner,jdbcType=VARCHAR},
+      </if>
+      <if test="hash != null">
+        #{hash,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="blkid != null">
+        #{blkid,jdbcType=CHAR},
+      </if>
+      <if test="txcount != null">
+        #{txcount,jdbcType=INTEGER},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="preid != null">
+        #{preid,jdbcType=CHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nonce != null">
+        #{nonce,jdbcType=BIGINT},
+      </if>
+      <if test="difficulty != null">
+        #{difficulty,jdbcType=INTEGER},
+      </if>
+      <if test="bits != null">
+        #{bits,jdbcType=CHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="txmerkleroot != null">
+        #{txmerkleroot,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.msy.block1112.po.Block">
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="block_id" jdbcType="INTEGER" property="blockId" />
+    <result column="block_hash" jdbcType="CHAR" property="blockHash" />
+    <result column="mined" jdbcType="VARCHAR" property="mined" />
+    <result column="size" jdbcType="INTEGER" property="size" />
+    <result column="time" jdbcType="BIGINT" property="time" />
+    <result column="confirmations" jdbcType="INTEGER" property="confirmations" />
+    <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
+    <result column="bits" jdbcType="INTEGER" property="bits" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+    <result column="markle_root" jdbcType="CHAR" property="markleRoot" />
+    <result column="nonce" jdbcType="VARCHAR" property="nonce" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="txSize" jdbcType="INTEGER" property="txsize" />
+    <result column="sizeOndisk" jdbcType="INTEGER" property="sizeondisk" />
+    <result column="feereword" jdbcType="DOUBLE" property="feereword" />
+    <result column="blockreword" jdbcType="DOUBLE" property="blockreword" />
+    <result column="transactionVolume" jdbcType="DOUBLE" property="transactionvolume" />
+  </resultMap>
+  <insert id="insert" parameterType="com.msy.block1112.po.Block">
+    insert into block (height, block_id, block_hash, 
+      mined, size, time, confirmations, 
+      difficulty, bits, weight, 
+      markle_root, nonce, version, 
+      txSize, sizeOndisk, feereword, 
+      blockreword, transactionVolume)
+    values (#{height,jdbcType=INTEGER}, #{blockId,jdbcType=INTEGER}, #{blockHash,jdbcType=CHAR}, 
+      #{mined,jdbcType=VARCHAR}, #{size,jdbcType=INTEGER}, #{time,jdbcType=BIGINT}, #{confirmations,jdbcType=INTEGER}, 
+      #{difficulty,jdbcType=DOUBLE}, #{bits,jdbcType=INTEGER}, #{weight,jdbcType=INTEGER}, 
+      #{markleRoot,jdbcType=CHAR}, #{nonce,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{txsize,jdbcType=INTEGER}, #{sizeondisk,jdbcType=INTEGER}, #{feereword,jdbcType=DOUBLE}, 
+      #{blockreword,jdbcType=DOUBLE}, #{transactionvolume,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.msy.block1112.po.Block">
+    insert into block
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="height != null">
+        height,
+      </if>
+      <if test="blockId != null">
+        block_id,
+      </if>
+      <if test="blockHash != null">
+        block_hash,
+      </if>
+      <if test="mined != null">
+        mined,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="confirmations != null">
+        confirmations,
+      </if>
+      <if test="difficulty != null">
+        difficulty,
+      </if>
+      <if test="bits != null">
+        bits,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="markleRoot != null">
+        markle_root,
+      </if>
+      <if test="nonce != null">
+        nonce,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="txsize != null">
+        txSize,
+      </if>
+      <if test="sizeondisk != null">
+        sizeOndisk,
+      </if>
+      <if test="feereword != null">
+        feereword,
+      </if>
+      <if test="blockreword != null">
+        blockreword,
+      </if>
+      <if test="transactionvolume != null">
+        transactionVolume,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="blockId != null">
+        #{blockId,jdbcType=INTEGER},
+      </if>
+      <if test="blockHash != null">
+        #{blockHash,jdbcType=CHAR},
+      </if>
+      <if test="mined != null">
+        #{mined,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=BIGINT},
+      </if>
+      <if test="confirmations != null">
+        #{confirmations,jdbcType=INTEGER},
+      </if>
+      <if test="difficulty != null">
+        #{difficulty,jdbcType=DOUBLE},
+      </if>
+      <if test="bits != null">
+        #{bits,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="markleRoot != null">
+        #{markleRoot,jdbcType=CHAR},
+      </if>
+      <if test="nonce != null">
+        #{nonce,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="txsize != null">
+        #{txsize,jdbcType=INTEGER},
+      </if>
+      <if test="sizeondisk != null">
+        #{sizeondisk,jdbcType=INTEGER},
+      </if>
+      <if test="feereword != null">
+        #{feereword,jdbcType=DOUBLE},
+      </if>
+      <if test="blockreword != null">
+        #{blockreword,jdbcType=DOUBLE},
+      </if>
+      <if test="transactionvolume != null">
+        #{transactionvolume,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>
