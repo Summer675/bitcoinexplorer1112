@@ -1,6 +1,9 @@
 package com.msy.block1112.dao;
 
+import com.msy.block1112.po.Trans;
 import com.msy.block1112.po.TransDetail;
+
+import java.util.List;
 
 public interface TransDetailMapper {
     int deleteByPrimaryKey(Long txDetailId);
@@ -14,4 +17,6 @@ public interface TransDetailMapper {
     int updateByPrimaryKeySelective(TransDetail record);
 
     int updateByPrimaryKey(TransDetail record);
+
+    List<TransDetail> list();
 }
