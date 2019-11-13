@@ -1,6 +1,7 @@
 package com.msy.block1112.dao;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.msy.block1112.dto.TransListDto;
 import com.msy.block1112.po.Trans;
 
@@ -11,7 +12,7 @@ public interface TransMapper {
 
     int insertSelective(Trans record);
 
-    List<Trans> list();
+    List<JSONObject> list(Integer size);
 
-    TransListDto getTransByTxhash(String txhash);
+    JSONObject getTransByTxhash(String txhash);
 }

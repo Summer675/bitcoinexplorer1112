@@ -3,9 +3,9 @@ package com.msy.block1112.po;
 public class Block {
     private Integer height;
 
-    private Integer blockId;
+    private Integer blockid;
 
-    private String blockHash;
+    private String blockhash;
 
     private String mined;
 
@@ -21,21 +21,21 @@ public class Block {
 
     private Integer weight;
 
-    private String markleRoot;
+    private String markle_root;
 
     private String nonce;
 
     private String version;
 
-    private Integer txsize;
+    private Integer txSize;
 
-    private Integer sizeondisk;
+    private Integer sizeOndisk;
 
     private Double feereword;
 
     private Double blockreword;
 
-    private Double transactionvolume;
+    private Double transactionVolume;
 
     public Integer getHeight() {
         return height;
@@ -45,20 +45,20 @@ public class Block {
         this.height = height;
     }
 
-    public Integer getBlockId() {
-        return blockId;
+    public Integer getBlockid() {
+        return blockid;
     }
 
-    public void setBlockId(Integer blockId) {
-        this.blockId = blockId;
+    public void setBlockid(Integer blockid) {
+        this.blockid = blockid;
     }
 
-    public String getBlockHash() {
-        return blockHash;
+    public String getBlockhash() {
+        return blockhash;
     }
 
-    public void setBlockHash(String blockHash) {
-        this.blockHash = blockHash == null ? null : blockHash.trim();
+    public void setBlockhash(String blockhash) {
+        this.blockhash = blockhash;
     }
 
     public String getMined() {
@@ -66,7 +66,7 @@ public class Block {
     }
 
     public void setMined(String mined) {
-        this.mined = mined == null ? null : mined.trim();
+        this.mined = mined;
     }
 
     public Integer getSize() {
@@ -117,12 +117,12 @@ public class Block {
         this.weight = weight;
     }
 
-    public String getMarkleRoot() {
-        return markleRoot;
+    public String getMarkle_root() {
+        return markle_root;
     }
 
-    public void setMarkleRoot(String markleRoot) {
-        this.markleRoot = markleRoot == null ? null : markleRoot.trim();
+    public void setMarkle_root(String markle_root) {
+        this.markle_root = markle_root;
     }
 
     public String getNonce() {
@@ -130,7 +130,7 @@ public class Block {
     }
 
     public void setNonce(String nonce) {
-        this.nonce = nonce == null ? null : nonce.trim();
+        this.nonce = nonce;
     }
 
     public String getVersion() {
@@ -138,23 +138,23 @@ public class Block {
     }
 
     public void setVersion(String version) {
-        this.version = version == null ? null : version.trim();
+        this.version = version;
     }
 
-    public Integer getTxsize() {
-        return txsize;
+    public Integer getTxSize() {
+        return txSize;
     }
 
-    public void setTxsize(Integer txsize) {
-        this.txsize = txsize;
+    public void setTxSize(Integer txSize) {
+        this.txSize = txSize;
     }
 
-    public Integer getSizeondisk() {
-        return sizeondisk;
+    public Integer getSizeOndisk() {
+        return sizeOndisk;
     }
 
-    public void setSizeondisk(Integer sizeondisk) {
-        this.sizeondisk = sizeondisk;
+    public void setSizeOndisk(Integer sizeOndisk) {
+        this.sizeOndisk = sizeOndisk;
     }
 
     public Double getFeereword() {
@@ -173,11 +173,11 @@ public class Block {
         this.blockreword = blockreword;
     }
 
-    public Double getTransactionvolume() {
-        return transactionvolume;
+    public Double getTransactionVolume() {
+        return transactionVolume;
     }
 
-    public void setTransactionvolume(Double transactionvolume) {
-        this.transactionvolume = transactionvolume;
+    public void setTransactionVolume(Double transactionVolume) {
+        this.transactionVolume = transactionVolume;
     }
 }
