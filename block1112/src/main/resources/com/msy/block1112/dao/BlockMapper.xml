@@ -49,6 +49,8 @@
     delete from block
     where blockhash = #{blockhash,jdbcType=CHAR}
   </delete>
+
+
   <insert id="insert" parameterType="com.msy.block1112.po.Block">
     insert into block (blockhash, blockchain_id, height, 
       time, tx_size, size_on_disk, 

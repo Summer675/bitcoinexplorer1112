@@ -41,39 +41,41 @@ where sizeOndisk =#{sizeOndisk}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from trans
-    where transId = #{transid,jdbcType=INTEGER}
+    where transId = #{transId,jdbcType=INTEGER}
   </delete>
+
+
   <insert id="insert" parameterType="com.msy.block1112.po.Trans">
     insert into trans (transId, block_id, txHash, 
       amount, total_input, total_output, 
       time, confirmations, status, 
       weight, fee, fee_per_weight, 
       fee_per_byte, sizeOndisk)
-    values (#{transid,jdbcType=INTEGER}, #{blockId,jdbcType=INTEGER}, #{txhash,jdbcType=CHAR}, 
-      #{amount,jdbcType=DOUBLE}, #{totalInput,jdbcType=DOUBLE}, #{totalOutput,jdbcType=DOUBLE}, 
+    values (#{transId,jdbcType=INTEGER}, #{block_id,jdbcType=INTEGER}, #{txHash,jdbcType=CHAR},
+      #{amount,jdbcType=DOUBLE}, #{total_input,jdbcType=DOUBLE}, #{total_output,jdbcType=DOUBLE},
       #{time,jdbcType=BIGINT}, #{confirmations,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{weight,jdbcType=INTEGER}, #{fee,jdbcType=DOUBLE}, #{feePerWeight,jdbcType=DOUBLE}, 
-      #{feePerByte,jdbcType=DOUBLE}, #{sizeondisk,jdbcType=INTEGER})
+      #{weight,jdbcType=INTEGER}, #{fee,jdbcType=DOUBLE}, #{fee_per_weight,jdbcType=DOUBLE},
+      #{fee_per_byte,jdbcType=DOUBLE}, #{sizeOndisk,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.msy.block1112.po.Trans">
     insert into trans
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="transid != null">
+      <if test="transId != null">
         transId,
       </if>
-      <if test="blockId != null">
+      <if test="block_id != null">
         block_id,
       </if>
-      <if test="txhash != null">
+      <if test="txHash != null">
         txHash,
       </if>
       <if test="amount != null">
         amount,
       </if>
-      <if test="totalInput != null">
+      <if test="total_input != null">
         total_input,
       </if>
-      <if test="totalOutput != null">
+      <if test="total_output != null">
         total_output,
       </if>
       <if test="time != null">
@@ -91,34 +93,34 @@ where sizeOndisk =#{sizeOndisk}
       <if test="fee != null">
         fee,
       </if>
-      <if test="feePerWeight != null">
+      <if test="fee_per_weight != null">
         fee_per_weight,
       </if>
-      <if test="feePerByte != null">
+      <if test="fee_per_byte != null">
         fee_per_byte,
       </if>
-      <if test="sizeondisk != null">
+      <if test="sizeOndisk != null">
         sizeOndisk,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="transid != null">
-        #{transid,jdbcType=INTEGER},
+      <if test="transId != null">
+        #{transId,jdbcType=INTEGER},
       </if>
-      <if test="blockId != null">
-        #{blockId,jdbcType=INTEGER},
+      <if test="block_id != null">
+        #{block_id,jdbcType=INTEGER},
       </if>
-      <if test="txhash != null">
-        #{txhash,jdbcType=CHAR},
+      <if test="txHash != null">
+        #{txHash,jdbcType=CHAR},
       </if>
       <if test="amount != null">
         #{amount,jdbcType=DOUBLE},
       </if>
-      <if test="totalInput != null">
-        #{totalInput,jdbcType=DOUBLE},
+      <if test="total_input != null">
+        #{total_input,jdbcType=DOUBLE},
       </if>
-      <if test="totalOutput != null">
-        #{totalOutput,jdbcType=DOUBLE},
+      <if test="total_output != null">
+        #{total_output,jdbcType=DOUBLE},
       </if>
       <if test="time != null">
         #{time,jdbcType=BIGINT},
@@ -135,34 +137,34 @@ where sizeOndisk =#{sizeOndisk}
       <if test="fee != null">
         #{fee,jdbcType=DOUBLE},
       </if>
-      <if test="feePerWeight != null">
-        #{feePerWeight,jdbcType=DOUBLE},
+      <if test="fee_per_weight != null">
+        #{fee_per_weight,jdbcType=DOUBLE},
       </if>
-      <if test="feePerByte != null">
-        #{feePerByte,jdbcType=DOUBLE},
+      <if test="fee_per_byte != null">
+        #{fee_per_byte,jdbcType=DOUBLE},
       </if>
-      <if test="sizeondisk != null">
-        #{sizeondisk,jdbcType=INTEGER},
+      <if test="sizeOndisk != null">
+        #{sizeOndisk,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.msy.block1112.po.Trans">
     update trans
     <set>
-      <if test="blockId != null">
-        block_id = #{blockId,jdbcType=INTEGER},
+      <if test="block_id != null">
+        block_id = #{block_id,jdbcType=INTEGER},
       </if>
-      <if test="txhash != null">
-        txHash = #{txhash,jdbcType=CHAR},
+      <if test="txHash != null">
+        txHash = #{txHash,jdbcType=CHAR},
       </if>
       <if test="amount != null">
         amount = #{amount,jdbcType=DOUBLE},
       </if>
-      <if test="totalInput != null">
-        total_input = #{totalInput,jdbcType=DOUBLE},
+      <if test="total_input != null">
+        total_input = #{total_input,jdbcType=DOUBLE},
       </if>
-      <if test="totalOutput != null">
-        total_output = #{totalOutput,jdbcType=DOUBLE},
+      <if test="total_output != null">
+        total_output = #{total_output,jdbcType=DOUBLE},
       </if>
       <if test="time != null">
         time = #{time,jdbcType=BIGINT},
@@ -182,31 +184,31 @@ where sizeOndisk =#{sizeOndisk}
       <if test="feePerWeight != null">
         fee_per_weight = #{feePerWeight,jdbcType=DOUBLE},
       </if>
-      <if test="feePerByte != null">
-        fee_per_byte = #{feePerByte,jdbcType=DOUBLE},
+      <if test="fee_per_byte != null">
+        fee_per_byte = #{fee_per_byte,jdbcType=DOUBLE},
       </if>
-      <if test="sizeondisk != null">
-        sizeOndisk = #{sizeondisk,jdbcType=INTEGER},
+      <if test="sizeOndisk != null">
+        sizeOndisk = #{sizeOndisk,jdbcType=INTEGER},
       </if>
     </set>
-    where transId = #{transid,jdbcType=INTEGER}
+    where transId = #{transId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.msy.block1112.po.Trans">
     update trans
-    set block_id = #{blockId,jdbcType=INTEGER},
-      txHash = #{txhash,jdbcType=CHAR},
+    set block_id = #{block_id,jdbcType=INTEGER},
+      txHash = #{txHash,jdbcType=CHAR},
       amount = #{amount,jdbcType=DOUBLE},
-      total_input = #{totalInput,jdbcType=DOUBLE},
-      total_output = #{totalOutput,jdbcType=DOUBLE},
+      total_input = #{total_input,jdbcType=DOUBLE},
+      total_output = #{total_output,jdbcType=DOUBLE},
       time = #{time,jdbcType=BIGINT},
       confirmations = #{confirmations,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       weight = #{weight,jdbcType=INTEGER},
       fee = #{fee,jdbcType=DOUBLE},
-      fee_per_weight = #{feePerWeight,jdbcType=DOUBLE},
-      fee_per_byte = #{feePerByte,jdbcType=DOUBLE},
-      sizeOndisk = #{sizeondisk,jdbcType=INTEGER}
-    where transId = #{transid,jdbcType=INTEGER}
+      fee_per_weight = #{fee_per_weight,jdbcType=DOUBLE},
+      fee_per_byte = #{fee_per_byte,jdbcType=DOUBLE},
+      sizeOndisk = #{sizeOndisk,jdbcType=INTEGER}
+    where transId = #{transId,jdbcType=INTEGER}
   </update>
 
 </mapper>
