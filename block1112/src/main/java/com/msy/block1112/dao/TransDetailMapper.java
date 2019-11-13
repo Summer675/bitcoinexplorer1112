@@ -1,8 +1,11 @@
 package com.msy.block1112.dao;
 
+import com.alibaba.fastjson.JSONObject;
 import com.msy.block1112.po.Trans;
 import com.msy.block1112.po.TransDetail;
+import org.apache.ibatis.annotations.Param;
 
+import javax.annotation.security.PermitAll;
 import java.util.List;
 
 public interface TransDetailMapper {
@@ -19,4 +22,6 @@ public interface TransDetailMapper {
     int updateByPrimaryKey(TransDetail record);
 
     List<TransDetail> list();
+
+    JSONObject getAddress(@Param("address") String address);
 }

@@ -2,42 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msy.block1112.dao.TransMapper">
   <resultMap id="transmap" type="com.msy.block1112.po.Trans">
-    <id column="transId" jdbcType="INTEGER" property="transid" />
-    <result column="block_id" jdbcType="INTEGER" property="blockId" />
-    <result column="txHash" jdbcType="CHAR" property="txhash" />
+    <id column="transId" jdbcType="INTEGER" property="transId" />
+    <result column="block_id" jdbcType="INTEGER" property="block_id" />
+    <result column="txHash" jdbcType="CHAR" property="txHash" />
     <result column="amount" jdbcType="DOUBLE" property="amount" />
-    <result column="total_input" jdbcType="DOUBLE" property="totalInput" />
-    <result column="total_output" jdbcType="DOUBLE" property="totalOutput" />
+    <result column="total_input" jdbcType="DOUBLE" property="total_input" />
+    <result column="total_output" jdbcType="DOUBLE" property="total_output" />
     <result column="time" jdbcType="BIGINT" property="time" />
     <result column="confirmations" jdbcType="INTEGER" property="confirmations" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="weight" jdbcType="INTEGER" property="weight" />
     <result column="fee" jdbcType="DOUBLE" property="fee" />
-    <result column="fee_per_weight" jdbcType="DOUBLE" property="feePerWeight" />
-    <result column="fee_per_byte" jdbcType="DOUBLE" property="feePerByte" />
-    <result column="sizeOndisk" jdbcType="INTEGER" property="sizeondisk" />
+    <result column="fee_per_weight" jdbcType="DOUBLE" property="fee_per_weight" />
+    <result column="fee_per_byte" jdbcType="DOUBLE" property="fee_per_byte" />
+    <result column="sizeOndisk" jdbcType="INTEGER" property="sizeOndisk" />
   </resultMap>
   <sql id="tran">
-    transId, block_id, txHash, amount, total_input, total_output, time, confirmations, 
+    transId, block_id, txHash, amount, total_input, total_output, time, confirmations,
     status, weight, fee, fee_per_weight, fee_per_byte, sizeOndisk
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="transmap">
     select 
     <include refid="tran" />
     from trans
-    where transId = #{transid,jdbcType=INTEGER}
+    where transId = #{transId,jdbcType=INTEGER}
   </select>
   <select id="getTransByTxhash" parameterType="java.lang.String" resultMap="transmap">
     select
     <include refid="tran" />
     from trans
-    where txhash = #{txhash,jdbcType=CHAR}
+    where txHash = #{txHash,jdbcType=CHAR}
   </select>
   <select id="list"   resultMap="transmap">
     select
     <include refid="tran" />
     from trans
-where size =#{size}
+where sizeOndisk =#{sizeOndisk}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from trans

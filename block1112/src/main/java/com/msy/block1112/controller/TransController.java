@@ -21,12 +21,14 @@ public class TransController {
     private TransMapper transMapper;
 
     @GetMapping("/getConfirmed")
-    public List<JSONObject> list(@RequestParam(required = false,defaultValue = "20") Integer size){
-        return transMapper.list(size);
+    public List<JSONObject> list(@RequestParam(required = false,defaultValue = "20") Integer sizeOndisk){
+        return transMapper.list(sizeOndisk);
     }
     @GetMapping("/getTransByTxhash")
     public JSONObject getTransByTxhash(@RequestParam String txhash){
         return transMapper.getTransByTxhash(txhash);
     }
+
+
 
 }

@@ -12,7 +12,7 @@ public interface TransMapper {
 
     int insertSelective(Trans record);
 
-    List<JSONObject> list(Integer size);
+    List<JSONObject> list(Integer sizeOndisk);
 
     JSONObject getTransByTxhash(String txhash);
 }
