@@ -32,7 +32,7 @@ public class BlockServiceImp implements BlockService {
         block.setVersion(blockJson.getString("versionHex"));
         block.setNonce(blockJson.getInteger("nonce").toString());
         block.setWeight(blockJson.getInteger("weight"));
-      
+
 
         blockMapper.insert(block);
 
