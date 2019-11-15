@@ -19,7 +19,7 @@ public class Trans {
 
     private Integer confirmations;
 
-    private Integer status;
+    private Byte status;
 
     private Integer weight;
 
@@ -95,11 +95,11 @@ public class Trans {
         this.confirmations = confirmations;
     }
 
-    public Integer getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 
