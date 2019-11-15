@@ -40,10 +40,22 @@
   </select>
 
   <select id="list"  resultMap="blockmap">
+  select
+  <include refid="blocksql" />
+  from block
+
+</select>
+  <select id="getpage"  resultMap="blockmap">
     select
     <include refid="blocksql" />
     from block
-
+    order by time desc
+  </select>
+  <select id="select"  resultMap="blockmap">
+    select
+    <include refid="blocksql" />
+    from block
+    order by time desc limit 10
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from block

@@ -13,11 +13,13 @@ public interface BlockMapper {
 
     int insertSelective(Block record);
 
-    Page<JSONObject> list();
+    Page<Block> getpage();
 
 
 
-    JSONObject getblockDetailByHash(@Param("blockhash") String blockhash);
+    Block getblockDetailByHash(@Param("blockhash") String blockhash);
 
-    JSONObject getblockDetailByHeight(Integer height);
+    Block getblockDetailByHeight(Integer height);
+
+    List<Block> select();
 }

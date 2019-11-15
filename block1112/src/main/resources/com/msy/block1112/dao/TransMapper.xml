@@ -22,10 +22,18 @@
     status, weight, fee, fee_per_weight, fee_per_byte, sizeOndisk
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="transmap">
-    select 
+  select
+  <include refid="tran" />
+  from trans
+  where transId = #{transId,jdbcType=INTEGER}
+</select>
+
+
+  <select id="selectAllByBlockhash" resultMap="transmap">
+    select
     <include refid="tran" />
     from trans
-    where transId = #{transId,jdbcType=INTEGER}
+    where block_id = #{block_id}
   </select>
   <select id="getTransByTxhash" parameterType="java.lang.String" resultMap="transmap">
     select

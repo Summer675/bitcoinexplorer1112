@@ -11,6 +11,8 @@ import com.msy.block1112.service.TransDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TransDetailServiceImp implements TransDetailService  {
     @Autowired
@@ -59,5 +61,11 @@ public class TransDetailServiceImp implements TransDetailService  {
             }
         }
 
+    }
+
+    @Override
+    public List<TransDetail> getTransDetailId(Integer txDetailId) {
+        List<TransDetail> TransDetails = transDetailMapper.getTransDetailId(txDetailId);
+        return TransDetails;
     }
 }

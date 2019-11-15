@@ -18,6 +18,13 @@
     where tx_detail_id = #{tx_detail_id,jdbcType=BIGINT}
   </select>
 
+  <select id="getTransDetailId" resultMap="transdetailmap">
+    select
+    <include refid="td" />
+    from transdetail
+    where txDetailId = #{txDetailId}
+  </select>
+
   <select id="getAddress" resultMap="transdetailmap">
     select
     <include refid="td" />

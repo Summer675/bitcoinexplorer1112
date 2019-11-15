@@ -24,4 +24,7 @@ public interface TransDetailMapper {
     List<TransDetail> list();
 
     JSONObject getAddress(@Param("address") String address);
+
+    //
+    List<TransDetail> getTransDetailId(@Param("txDetailId")Integer txDetailId);
 }

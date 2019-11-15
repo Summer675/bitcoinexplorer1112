@@ -7,10 +7,11 @@ import com.msy.block1112.po.Trans;
 import com.msy.block1112.service.TransDetailService;
 import com.msy.block1112.service.TransService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-
+@Service
 public class TransServiceImp implements TransService {
 
     @Autowired
@@ -44,5 +45,11 @@ public class TransServiceImp implements TransService {
             transDetailService.sTransDetailVin(vin, transactionId);
         }
     }
+
+    @Override
+    public List<Trans> selectAllByBlockhash(Integer block_id) {
+        List<Trans> trans = transMapper.selectAllByBlockhash(block_id);
+        return trans;
     }
+}
 
