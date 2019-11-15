@@ -5,6 +5,7 @@ public class Trans {
 
     private Integer block_id;
 
+    private String txId;
     private String txHash;
 
     private Double amount;
@@ -30,6 +31,14 @@ public class Trans {
     private Double fee_per_byte;
 
     private Integer sizeOndisk;
+
+    public String getTxId() {
+        return txId;
+    }
+
+    public void setTxId(String txId) {
+        this.txId = txId;
+    }
 
     public Integer getTransId() {
         return transId;

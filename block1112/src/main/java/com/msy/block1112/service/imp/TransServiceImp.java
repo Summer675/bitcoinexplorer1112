@@ -23,7 +23,7 @@ public class TransServiceImp implements TransService {
     private TransDetailService transDetailService;
 
     @Override
-    public void sTrans(String txid, Integer blockId, Long time) {
+    public void sTrans(String txid, Integer blockId, Long time) throws Throwable {
         JSONObject transactionJson = bitcoinRest.getTx(txid);
         Trans trans = new Trans();
         trans.setBlock_id(blockId);
