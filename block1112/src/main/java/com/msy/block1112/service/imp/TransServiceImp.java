@@ -26,7 +26,6 @@ public class TransServiceImp implements TransService {
     public void sTrans(String txid, Integer blockId, Long time) {
         JSONObject transactionJson = bitcoinRest.getTx(txid);
         Trans trans = new Trans();
-        //set amount
         trans.setBlock_id(blockId);
         trans.setSizeOndisk(transactionJson.getInteger("size"));
         trans.setStatus((byte)0);
@@ -34,22 +33,16 @@ public class TransServiceImp implements TransService {
         trans.setTxHash(transactionJson.getString("hash"));
         trans.setTransId(transactionJson.getInteger("transId"));
         trans.setWeight(transactionJson.getInteger("weight"));
-
         transMapper.insert(trans);
-
         Integer transactionId = trans.getTransId();
-
         List<JSONObject> vouts = transactionJson.getJSONArray("vout").toJavaList(JSONObject.class);
         for (JSONObject vout : vouts) {
             transDetailService.sTransDetailVout(vout, transactionId);
         }
-
-
         List<JSONObject> vins = transactionJson.getJSONArray("vin").toJavaList(JSONObject.class);
         for (JSONObject vin : vins) {
             transDetailService.sTransDetailVin(vin, transactionId);
         }
-
     }
     }
 
