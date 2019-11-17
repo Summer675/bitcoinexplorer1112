@@ -10,6 +10,6 @@ public interface TransService {
     void sTrans(String txid, Integer blockId, Long time) throws Throwable;
     List<Trans> selectAllByBlockhash( Integer block_id);
     Page<Trans> selectByBlockIdWithPage(Integer block_id,Integer page);
-
+    Trans getByTxId(String txId);
 
 }

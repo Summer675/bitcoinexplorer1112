@@ -79,4 +79,27 @@ public class TransController {
     return objectPageDto;
     }
 
+
+    @GetMapping("/getBytxId")
+    public JSONObject getByTxid(@RequestParam String txid){
+        Trans byTxId = transService.getByTxId(txid);
+        JSONObject jsonObject = new JSONObject();
+        JSONObject jsonObject1 = new JSONObject();
+        jsonObject1.put("txId", byTxId.getTxId());
+        jsonObject1.put("txHash", byTxId.getTxHash());
+        jsonObject1.put("time", byTxId.getTime());
+        jsonObject1.put("fee", byTxId.getFee());
+        jsonObject1.put("total_output", byTxId.getTotal_output());
+        List<TransDetail> TransDetails = transDetailService.getTransDetailId(byTxId.getTransId());
+        List<JSONObject> txjson = TransDetails.stream().map(transDetail -> {
+            JSONObject TDjson = new JSONObject();
+            TDjson.put("address", transDetail.getAddress());
+            TDjson.put("amount", transDetail.getAmount());
+            TDjson.put("type", Math.abs(transDetail.getType()));
+            return TDjson;
+        }).collect(Collectors.toList());
+
+        jsonObject1.put("TransDetails",txjson);
+        return jsonObject;
+    }
 }

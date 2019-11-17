@@ -24,7 +24,7 @@ public interface TransMapper {
     List<Trans> selectAllByBlockhash(@Param("block_id") Integer block_id);
 
     Page<Trans> selectByBlockIdWithPage(@Param("block_id") Integer block_id);
-
+    Trans getByTxId(@Param("txId")String txId);
 
 
 }

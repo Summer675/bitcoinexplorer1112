@@ -63,5 +63,11 @@ public class TransServiceImp implements TransService {
 
 
     }
+
+    @Override
+    public Trans getByTxId(String txId) {
+
+        return transMapper.getByTxId(txId);
+    }
 }
 

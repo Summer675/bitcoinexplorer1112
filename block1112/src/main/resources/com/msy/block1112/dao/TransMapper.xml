@@ -42,6 +42,13 @@
     from trans
     where block_id = #{block_id}
   </select>
+
+  <select id="getByTxId" resultMap="transmap">
+    select
+    <include refid="tran" />
+    from trans
+    where txId = #{txId}
+  </select>
   <select id="getTransByTxhash" parameterType="java.lang.String" resultMap="transmap">
     select
     <include refid="tran" />
