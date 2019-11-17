@@ -1,6 +1,9 @@
 package com.msy.block1112.service.imp;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.msy.block1112.changliang.ChangLiang;
 import com.msy.block1112.client.BitcoinRest;
 import com.msy.block1112.dao.TransMapper;
 import com.msy.block1112.po.Trans;
@@ -50,6 +53,15 @@ public class TransServiceImp implements TransService {
     public List<Trans> selectAllByBlockhash(Integer block_id) {
         List<Trans> trans = transMapper.selectAllByBlockhash(block_id);
         return trans;
+    }
+
+    @Override
+    public Page<Trans> selectByBlockIdWithPage(Integer block_id, Integer page) {
+        PageHelper.startPage(page, ChangLiang.PAGE_SIZE);
+        Page<Trans> trans = transMapper.selectByBlockIdWithPage(block_id);
+        return trans;
+
+
     }
 }
 

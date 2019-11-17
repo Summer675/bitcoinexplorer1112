@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msy.block1112.dao.TransDetailMapper">
   <resultMap id="transdetailmap" type="com.msy.block1112.po.TransDetail">
-    <id column="tx_detail_id" jdbcType="BIGINT" property="tx_detail_id" />
+    <id column="txDetailId" jdbcType="BIGINT" property="txDetailId" />
     <result column="transId" jdbcType="INTEGER" property="transId" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="amount" jdbcType="DOUBLE" property="amount" />
@@ -31,9 +31,9 @@
     from transdetail
     where address = #{address}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" >
     delete from transdetail
-    where tx_detail_id = #{tx_detail_id,jdbcType=BIGINT}
+    where txDetailId = #{txDetailId}
   </delete>
   <insert id="insert" parameterType="com.msy.block1112.po.TransDetail">
     insert into transdetail (tx_detail_id, transId, address, 

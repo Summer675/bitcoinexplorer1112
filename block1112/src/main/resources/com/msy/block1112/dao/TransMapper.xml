@@ -30,6 +30,13 @@
 
 
   <select id="selectAllByBlockhash" resultMap="transmap">
+  select
+  <include refid="tran" />
+  from trans
+  where block_id = #{block_id}
+</select>
+
+  <select id="selectByBlockIdWithPage" resultMap="transmap">
     select
     <include refid="tran" />
     from trans
