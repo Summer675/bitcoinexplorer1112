@@ -104,4 +104,26 @@
       type = #{type,jdbcType=TINYINT}
     where tx_detail_id = #{tx_detail_id,jdbcType=BIGINT}
   </update>
+
+
+  <select id="selectTotalByAddress" resultType="java.lang.Integer">
+    select
+      count(txDetailId)
+    from transdetail
+    where address = #{address}
+  </select>
+
+  <select id="selectByAddress" resultType="java.lang.Double">
+    select
+      sum(amount)
+    from transdetail
+    where address = #{address} and `type` =1
+  </select>
+
+  <select id="selectSendByAddress" resultType="java.lang.Double">
+    select
+      sum(amount)
+    from transdetail
+    where address = #{address} and `type` =0
+  </select>
 </mapper>

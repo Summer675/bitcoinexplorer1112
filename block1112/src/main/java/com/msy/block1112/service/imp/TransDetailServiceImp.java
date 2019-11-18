@@ -71,4 +71,23 @@ public class TransDetailServiceImp implements TransDetailService  {
         List<TransDetail> TransDetails = transDetailMapper.getTransDetailId(txDetailId);
         return TransDetails;
     }
+
+    @Override
+    public Integer getTotalByAddress(String address) {
+        Integer total = transDetailMapper.selectTotalByAddress(address);
+        return total;
+    }
+
+    @Override
+    public Double getByAddress(String address) {
+        Double receiveAmount = transDetailMapper.selectByAddress(address);
+        return receiveAmount;
+    }
+
+    @Override
+    public Double getSendByAddress(String address) {
+
+            Double sendAmount = transDetailMapper.selectSendByAddress(address);
+            return sendAmount;
+        }
 }

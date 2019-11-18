@@ -27,4 +27,9 @@ public interface TransDetailMapper {
 
     //
     List<TransDetail> getTransDetailId(@Param("txDetailId")Integer txDetailId);
+    Integer selectTotalByAddress(@Param("address") String address);
+
+    Double selectByAddress(@Param("address")String address);
+
+    Double selectSendByAddress(@Param("address")String address);
 }

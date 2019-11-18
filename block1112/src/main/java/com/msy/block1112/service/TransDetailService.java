@@ -13,4 +13,9 @@ public interface TransDetailService {
 
     //
     List<TransDetail> getTransDetailId(Integer txDetailId);
+    Integer getTotalByAddress(String address);
+
+    Double getByAddress(String address);
+
+    Double getSendByAddress(String address);
 }
