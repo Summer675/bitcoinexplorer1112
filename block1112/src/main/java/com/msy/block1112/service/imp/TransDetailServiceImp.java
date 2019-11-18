@@ -39,30 +39,33 @@ public class TransDetailServiceImp implements TransDetailService  {
     }
 
     @Override
-    public void sTransDetailVin(JSONObject vin, Integer transid) throws Throwable {
+    public void sTransDetailVin(JSONObject vin, Integer transid)  {
         TransDetail transDetail = new TransDetail();
         transDetail.setTransid(transid);
         transDetail.setType((byte) TxDetailType.Send.ordinal());
         String txIdVin = vin.getString("txId");
         Integer n = vin.getInteger("vout");
-        if (txIdVin!=null && n!=null){
-            JSONObject trans = bitJsonRpc.getTrans(txIdVin);
-            JSONArray vout = trans.getJSONArray("vout");
-            JSONObject jsonObject = vout.getJSONObject(n);
-            Double amount = jsonObject.getDouble("value");
-            transDetail.setAmount(-amount);
-            JSONObject scriptPubKey = jsonObject.getJSONObject("scriptPubKey");
-            JSONArray address = scriptPubKey.getJSONArray("address");
-            if (address!=null){
-                String addr = address.getString(0);
-                transDetail.setAddress(addr);
-                transDetailMapper.insert(transDetail);
+        if (txIdVin != null && n != null){
 
+            try {
+                JSONObject transactionJson = bitJsonRpc.getTrans(txIdVin);
+                JSONArray vouts = transactionJson.getJSONArray("vout");
+                JSONObject vout = vouts.getJSONObject(n);
+                Double amount = vout.getDouble("value");
+                transDetail.setAmount(-amount);
+                JSONObject scriptPubKey = vout.getJSONObject("scriptPubKey");
+                JSONArray addresses = scriptPubKey.getJSONArray("addresses");
+                if (addresses != null){
+                    String address = addresses.getString(0);
+                    transDetail.setAddress(address);
+                    transDetailMapper.insert(transDetail);
+                }
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
             }
+
         }
-
     }
-
     @Override
     public List<TransDetail> getTransDetailId(Integer txDetailId) {
         List<TransDetail> TransDetails = transDetailMapper.getTransDetailId(txDetailId);

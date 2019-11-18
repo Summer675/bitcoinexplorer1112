@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+
 import java.util.List;
 @Service
 public class TransServiceImp implements TransService {
@@ -27,8 +28,8 @@ public class TransServiceImp implements TransService {
     private TransDetailService transDetailService;
 
     @Override
-    public void sTrans(String txid, Integer blockId, Long time) throws Throwable {
-        JSONObject transactionJson = bitcoinRest.getTx(txid);
+    public void sTrans(String txId, Integer blockId, Long time)  {
+        JSONObject transactionJson = bitcoinRest.getTx(txId);
         Trans trans = new Trans();
         trans.setBlock_id(blockId);
         trans.setSizeOndisk(transactionJson.getInteger("size"));

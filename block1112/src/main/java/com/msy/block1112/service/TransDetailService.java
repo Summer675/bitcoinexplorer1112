@@ -9,7 +9,7 @@ import java.util.List;
 public interface TransDetailService {
     void sTransDetailVout(JSONObject vout, Integer transactionId);
 
-    void sTransDetailVin(JSONObject vin, Integer transactionId) throws Throwable;
+    void sTransDetailVin(JSONObject vin, Integer transactionId);
 
     //
     List<TransDetail> getTransDetailId(Integer txDetailId);

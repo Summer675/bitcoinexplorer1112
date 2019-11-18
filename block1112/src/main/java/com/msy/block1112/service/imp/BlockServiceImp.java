@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +23,8 @@ public class BlockServiceImp implements BlockService {
 
     @Autowired
     private BitcoinRest bitcoinRest;
+    @Autowired
+    private TransServiceImp transServiceImp;
     public Logger logger=  LoggerFactory.getLogger(this.getClass());
     @Override
     public String syncBlock(String blockhash) {
@@ -39,6 +42,14 @@ public class BlockServiceImp implements BlockService {
         block.setNonce(blockJson.getInteger("nonce").toString());
         block.setWeight(blockJson.getInteger("weight"));
         blockMapper.insert(block);
+        Integer blockId = block.getBlockid();
+        Long time = block.getTime();
+
+        ArrayList<String> txids = (ArrayList<String>) blockJson.get("tx");
+        for (String txid : txids) {
+            transServiceImp.sTrans(txid, blockId, time);
+        }
+
         String nextblockhash = blockJson.getString("nextblockhash");
         return nextblockhash;
     }

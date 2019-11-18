@@ -64,15 +64,18 @@
 
 
   <insert id="insert" parameterType="com.msy.block1112.po.Block">
-    insert into block (blockhash, blockchain_id, height, 
-      time, tx_size, size_on_disk, 
-      difficulty, prev_blockhash, next_blockhash, 
-      output_total, transaction_fees, merkle_root
+    insert into block (blockhash, blockid, height,
+      time, txSize, sizeOndisk,
+      difficulty,mined,confirmations,bits,weight,markle_root,nonce,version,feereword,blockreword,
+                       transactionVolume
+
       )
-    values (#{blockhash,jdbcType=CHAR}, #{blockchainId,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, 
-      #{time,jdbcType=TIMESTAMP}, #{txSize,jdbcType=INTEGER}, #{sizeOnDisk,jdbcType=BIGINT}, 
-      #{difficulty,jdbcType=DOUBLE}, #{prevBlockhash,jdbcType=CHAR}, #{nextBlockhash,jdbcType=CHAR}, 
-      #{outputTotal,jdbcType=DOUBLE}, #{transactionFees,jdbcType=DOUBLE}, #{merkleRoot,jdbcType=CHAR}
+    values (#{blockhash,jdbcType=CHAR}, #{blockid,jdbcType=INTEGER}, #{height,jdbcType=INTEGER},
+      #{time,jdbcType=TIMESTAMP}, #{txSize,jdbcType=INTEGER}, #{sizeOndisk,jdbcType=BIGINT},
+      #{difficulty,jdbcType=DOUBLE}, #{mined,jdbcType=VARCHAR},#{confirmations,jdbcType=INTEGER},
+       #{bits,jdbcType=INTEGER},#{weight,jdbcType=INTEGER},#{markle_root,jdbcType=CHAR}, #{nonce,jdbcType=VARCHAR},
+        #{version,jdbcType=VARCHAR},  #{feereword,jdbcType=DOUBLE},
+            #{blockreword,jdbcType=DOUBLE},  #{transactionVolume,jdbcType=DOUBLE}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.msy.block1112.po.Block">
@@ -81,9 +84,7 @@
       <if test="blockhash != null">
         blockhash,
       </if>
-      <if test="blockchainId != null">
-        blockchain_id,
-      </if>
+
       <if test="height != null">
         height,
       </if>
@@ -99,29 +100,13 @@
       <if test="difficulty != null">
         difficulty,
       </if>
-      <if test="prevBlockhash != null">
-        prev_blockhash,
-      </if>
-      <if test="nextBlockhash != null">
-        next_blockhash,
-      </if>
-      <if test="outputTotal != null">
-        output_total,
-      </if>
-      <if test="transactionFees != null">
-        transaction_fees,
-      </if>
-      <if test="merkleRoot != null">
-        merkle_root,
-      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="blockhash != null">
         #{blockhash,jdbcType=CHAR},
       </if>
-      <if test="blockchainId != null">
-        #{blockchainId,jdbcType=INTEGER},
-      </if>
+
       <if test="height != null">
         #{height,jdbcType=INTEGER},
       </if>
@@ -137,29 +122,13 @@
       <if test="difficulty != null">
         #{difficulty,jdbcType=DOUBLE},
       </if>
-      <if test="prevBlockhash != null">
-        #{prevBlockhash,jdbcType=CHAR},
-      </if>
-      <if test="nextBlockhash != null">
-        #{nextBlockhash,jdbcType=CHAR},
-      </if>
-      <if test="outputTotal != null">
-        #{outputTotal,jdbcType=DOUBLE},
-      </if>
-      <if test="transactionFees != null">
-        #{transactionFees,jdbcType=DOUBLE},
-      </if>
-      <if test="merkleRoot != null">
-        #{merkleRoot,jdbcType=CHAR},
-      </if>
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.msy.block1112.po.Block">
     update block
     <set>
-      <if test="blockchainId != null">
-        blockchain_id = #{blockchainId,jdbcType=INTEGER},
-      </if>
+
       <if test="height != null">
         height = #{height,jdbcType=INTEGER},
       </if>
@@ -195,7 +164,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.msy.block1112.po.Block">
     update block
-    set blockchain_id = #{blockchainId,jdbcType=INTEGER},
+    set 
       height = #{height,jdbcType=INTEGER},
       time = #{time,jdbcType=TIMESTAMP},
       tx_size = #{txSize,jdbcType=INTEGER},
