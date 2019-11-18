@@ -22,12 +22,12 @@ public class BitJsonRpcImpl implements BitJsonRpc{
         HashMap<String,String> hashMap=new HashMap<>();
         String str=username+":"+password;
         String s = Base64.getEncoder().encodeToString(str.getBytes());
-        hashMap.put("Authorization", "Basic"+s);
+        hashMap.put("Authorization","Basic "+s);
         jsonRpcHttpClient.setHeaders(hashMap);
     }
     @Override
     public JSONObject getTrans(String txId) throws Throwable {
-        JSONObject jsonObject = jsonRpcHttpClient.invoke("gettrans", new Object[] { txId, true }, JSONObject.class);
+        JSONObject jsonObject = jsonRpcHttpClient.invoke("getrawtransaction", new Object[] { txId, true }, JSONObject.class);
         return jsonObject;
 
     }

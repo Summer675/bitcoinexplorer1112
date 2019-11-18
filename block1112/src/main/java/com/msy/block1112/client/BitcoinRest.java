@@ -12,7 +12,7 @@ public interface BitcoinRest {
     @GetMapping("/rest/chaininfo.json")
     JSONObject getChainInfo();
 
-
+//数据头
     @GetMapping("/rest/headers/{count}/{blockhash}.json")
     List<JSONObject> getBlockHeaders(@PathVariable  Integer count,@PathVariable  String blockhash);
 
@@ -22,6 +22,8 @@ public interface BitcoinRest {
     @GetMapping("/rest/block/{blockhash}.json")
     JSONObject getBlock(@PathVariable String blockhash);
 
+    @GetMapping("/rest/block/{blockhash}.json")
+    JSONObject getBlockInfo(@PathVariable String blockhash);
 
     @GetMapping("/rest/tx/{txHash}.json")
     JSONObject getTx(@PathVariable String txHash);
