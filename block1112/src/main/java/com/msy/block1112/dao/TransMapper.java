@@ -26,5 +26,7 @@ public interface TransMapper {
     Page<Trans> selectByBlockIdWithPage(@Param("block_id") Integer block_id);
     Trans getByTxId(@Param("txId")String txId);
 
+    Page<Trans> getTransByAddressPage(@Param("address")String address);
+
 
 }

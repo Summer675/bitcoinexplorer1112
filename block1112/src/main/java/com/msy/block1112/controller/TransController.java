@@ -102,4 +102,41 @@ public class TransController {
         jsonObject1.put("TransDetails",txjson);
         return jsonObject;
     }
+
+
+    @GetMapping("/getByAddressPage")
+    public PageDto<JSONObject> getByAddressPage(@RequestParam String address,@RequestParam(required = false,defaultValue = "1") Integer page){
+        Page<Trans> pagetx = transService.getTransByAddress(address, page);
+        PageDto<JSONObject> pageDTO = getPageDTOPage(pagetx);
+        return pageDTO;
+    }
+
+
+    private PageDto<JSONObject> getPageDTOPage(Page<Trans> pageXt){
+        List<JSONObject> txJsons = pageXt.stream().map(tx -> {
+            JSONObject txJson = new JSONObject();
+            txJson.put("txId", tx.getTxId());
+            txJson.put("txHash", tx.getTxHash());
+            txJson.put("time", tx.getTime());
+            txJson.put("fee", tx.getFee());
+            txJson.put("total_output", tx.getTotal_output());
+
+            List<TransDetail> txDetails = transDetailService.getTransDetailId(tx.getTransId());
+            List<JSONObject> txDetailJsons = txDetails.stream().map(txDetail -> {
+                JSONObject txDetailJson = new JSONObject();
+                txDetailJson.put("address", txDetail.getAddress());
+                txDetailJson.put("type", txDetail.getType());
+                txDetailJson.put("amount", Math.abs(txDetail.getAmount()));
+                return txDetailJson;
+            }).collect(Collectors.toList());
+            txJson.put("txDetails", txDetailJsons);
+            return txJson;
+        }).collect(Collectors.toList());
+        PageDto<JSONObject> pageDto=new PageDto<>();
+        pageDto.setTotal(pageXt.getTotal());
+        pageDto.setPageSize(ChangLiang.PAGE_SIZE);
+        pageDto.setCurrentPage(pageXt.getPageNum());
+        pageDto.setList(txJsons);
+        return pageDto;
+    }
 }

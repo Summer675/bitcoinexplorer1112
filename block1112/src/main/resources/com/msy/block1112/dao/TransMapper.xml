@@ -233,4 +233,10 @@ where sizeOndisk =#{sizeOndisk}
     where transId = #{transId,jdbcType=INTEGER}
   </update>
 
+  <select id="getTransByAddressPage" resultMap="transmap">
+    SELECT distinct(td.transId) as transId2 ,t.* FROM transdetail as td left join transaction as t on td.transId = t.transId
+    where td.address = #{address}
+    order by time desc
+  </select>
+
 </mapper>

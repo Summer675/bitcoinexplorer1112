@@ -70,5 +70,14 @@ public class TransServiceImp implements TransService {
 
         return transMapper.getByTxId(txId);
     }
+
+    @Override
+    public Page<Trans> getTransByAddress(String address, Integer page) {
+        PageHelper.startPage(page, ChangLiang.PAGE_SIZE);
+        Page<Trans> trans = transMapper.getTransByAddressPage(address);
+        return trans;
+    }
+
+
 }
 
