@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/elementui.css">
+    <title>Addressinfo</title>
+</head>
+
+<body>
+<div id="app">
+        Address: {{addressinfo.address}}
+        <el-divider></el-divider>
+        Format : {{addressinfo.format}}
+        <el-divider></el-divider>
+        Transactions: {{addressinfo.txSize}}
+        <el-divider></el-divider>
+        Total Received: {{addressinfo.totalReceived}}
+        <el-divider></el-divider>
+        Total Sent: {{addressinfo.totalSent}}
+        <el-divider></el-divider>
+        Final Balance: {{addressinfo.balance}}
+        <el-divider></el-divider>
+</div>
+
+<script src="assets/js/axios.min.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/vue.js"></script>
+<script src="assets/js/elementui.js"></script>
+<script src="viewmodels/Addressinfo.js"></script>
+
+</body>
+
+</html>
