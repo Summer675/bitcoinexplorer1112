@@ -6,6 +6,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 Vue.use(Router)
 
+import Block from '@/components/Block'
+
+
+
 export default new Router({
   mode:"history",
   routes: [
@@ -13,6 +17,11 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/block',
+      name: 'block',
+      component: Block
     }
   ]
 })
