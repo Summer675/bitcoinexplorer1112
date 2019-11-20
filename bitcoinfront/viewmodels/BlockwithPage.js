@@ -7,11 +7,12 @@ var app = new Vue({
         pageSize:0,
     },
     methods: {
-        getBlockwithPage(pageNum) {
-            axios.get('/block/getWithPage',{params:{pageNum:pageNum}})
-                .then(function (res) {
+        getBlockwithPage(page) {
+         
+            axios.get('/block/getWithPage',{params:{page:page}})
+                .then(res=>{
                     console.log(res);
-                    console.log(pageNum);
+                    
                     this.blockwithPage=res.data.list;
                     this.total=res.data.total;
                     this.pageSize=res.data.pageSize;
@@ -24,8 +25,8 @@ var app = new Vue({
                     // always executed
                 });
         },
-        currentChange(pageNum){
-            this.getBlockwithPage(pageNum);
+        currentChange(page){
+            this.getBlockwithPage(page);
         }
     },
     mounted() {
