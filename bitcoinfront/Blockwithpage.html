@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/elementui.css">
+    <title>BlockwithPage</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-table :data="blockwithPage" style="width: 100%">
+            <el-table-column prop="height" label="Height" width="180">
+            </el-table-column>
+            <el-table-column prop="blockhash" label="Hash" width="180">
+            </el-table-column>
+            <el-table-column prop="time" label="Time" width="180">
+            </el-table-column>
+            <el-table-column prop="miner" label="Miner" width="180">
+            </el-table-column>
+            <el-table-column prop="size" label="Sizeondisk" width="180">
+            </el-table-column>
+
+        </el-table>
+        <el-pagination background layout="prev, pager, next" :total="total" :page-size="pageSize" @current-change="currentChange">
+        </el-pagination>
+    </div>
+
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/elementui.js"></script>
+    <script src="viewmodels/BlockwithPage.js"></script>
+
+</body>
+
+</html>

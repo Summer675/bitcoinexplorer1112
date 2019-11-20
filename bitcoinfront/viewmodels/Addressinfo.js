@@ -4,7 +4,8 @@ var app = new Vue({
         address: '',
         addressinfo: '',
         page: 1,
-        txPageinfo: ''
+        txPageinfo: '',
+        getTransactionByAddressWithPage:[],
     },
 
     methods: {
@@ -16,12 +17,28 @@ var app = new Vue({
             })
                 .then(res => {
                     console.log(res);
-                    app.addressInfo = res.data;
+                    app.addressinfo = res.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        getTransactionsByAddress() {
+            axios.get('/transaction/getTransactionByAddressWithPage', {
+                params: {
+                    address: this.address,
+                    page: this.page
+                }
+            })
+                .then(res=> {
+                    console.log(res);
+                    this.getTransactionByAddressWithPage = res.data;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
+    
     },
     mounted() {
         var url = new URL(location.href);
@@ -30,7 +47,7 @@ var app = new Vue({
             alert('address null');
             return;
         }
-        this.getAddressInfoByAddress();
-       
+       this.getAddressInfoByAddress();
+       this.getTransactionsByAddress();
     },
 })
