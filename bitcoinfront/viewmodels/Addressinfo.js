@@ -5,7 +5,7 @@ var app = new Vue({
         addressinfo: '',
         page: 1,
         txPageinfo: '',
-        getTransactionByAddressWithPage:[],
+        visible: false
     },
 
     methods: {
@@ -32,7 +32,7 @@ var app = new Vue({
             })
                 .then(res=> {
                     console.log(res);
-                    this.getTransactionByAddressWithPage = res.data;
+                    app.txPageinfo = res.data;
                 })
                 .catch(function (error) {
                     console.log(error);

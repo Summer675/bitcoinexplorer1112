@@ -31,5 +31,14 @@ var app = new Vue({
     },
     mounted() {
             this.getBlockwithPage();
-    }
+    },
+    computed: {
+        newBlocks() {
+            return this.blocks.map(block => {
+                var newBlock = block;
+                newBlock.fornow = moment.unix(block.time).fromNow();
+                return newBlock;
+            });
+        }
+    },
 })
