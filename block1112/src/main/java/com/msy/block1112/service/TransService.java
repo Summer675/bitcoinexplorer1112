@@ -12,5 +12,7 @@ public interface TransService {
     Page<Trans> selectByBlockIdWithPage(Integer block_id,Integer page);
     Trans getByTxId(String txId);
     Page<Trans> getTransByAddress(String address,Integer page);
+    void pushNewMempoolTxes();
+
 
 }
