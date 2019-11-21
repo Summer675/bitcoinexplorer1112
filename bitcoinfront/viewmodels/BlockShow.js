@@ -1,37 +1,36 @@
 var app = new Vue({
     el: '#app',
     data: {
-        address: '',
-        addressinfo: '',
+
+        blockhash: '',
+        block: '',
         page: 1,
         txPageinfo: '',
         visible: false,
-        
     },
-
     methods: {
-        getAddressInfoByAddress() {
-            axios.get('/address/getInfoByAddress', {
+        getBlockByBlockhash() {
+            axios.get('/block/getInfoByHash', {
                 params: {
-                    address: this.address
+                    blockhash: this.blockhash
                 }
             })
                 .then(res => {
                     console.log(res);
-                    app.addressinfo = res.data;
+                    app.block = res.data;
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         },
-        getTransactionsByAddress() {
+        getTransactionsByBlockhash() {
             axios.get('/transaction/getTransactionByAddressWithPage', {
                 params: {
-                    address: this.address,
+                    blockhash: this.blockhash,
                     page: this.page
                 }
             })
-                .then(res=> {
+                .then(res => {
                     console.log(res);
                     app.txPageinfo = res.data;
                 })
@@ -39,25 +38,19 @@ var app = new Vue({
                     console.log(error);
                 });
         }
-    
+      
     },
     mounted() {
+
         var url = new URL(location.href);
-        this.address = url.searchParams.get("address");
-        if (!this.address) {
-            alert('address null');
+        this.blockhash = url.searchParams.get("blockhash");
+        if (!this.blockhash) {
+            alert('blockhash null');
             return;
         }
 
-        var qrcode = new QRCode("AddressQRCode", {
-            text: this.address,
-            width: 128,
-            height: 128,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
-       this.getAddressInfoByAddress();
-       this.getTransactionsByAddress();
-    },
+        this.getBlockByBlockhash();
+        this.getTransactionsByBlockhash();
+
+    }
 })

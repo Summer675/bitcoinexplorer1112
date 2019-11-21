@@ -13,7 +13,7 @@ var app = new Vue({
                 .then(res=>{
                     console.log(res);
                     
-                    this.blockwithPage=res.data.list;
+                    app.blockwithPage=res.data.list;
                     this.total=res.data.total;
                     this.pageSize=res.data.pageSize;
                 })
@@ -34,7 +34,7 @@ var app = new Vue({
     },
     computed: {
         newBlocks() {
-            return this.blocks.map(block => {
+            return this.blockwithPage.map(block => {
                 var newBlock = block;
                 newBlock.fornow = moment.unix(block.time).fromNow();
                 return newBlock;

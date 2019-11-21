@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/elementui.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
     <title>BlockwithPage</title>
 </head>
 
@@ -21,7 +22,7 @@
                             </div>
                         </template>
             </el-table-column>
-            <el-table-column prop="time" label="Time" width="180">
+            <el-table-column prop="fornow" label="Time" width="180">
             </el-table-column>
             <el-table-column prop="miner" label="Miner" width="180">
             </el-table-column>
@@ -35,7 +36,7 @@
         <el-pagination background layout="prev, pager, next" :total="total" :page-size="pageSize" @current-change="currentChange">
         </el-pagination>
     </div>
-
+    <script src="assets/js/moment.min.js"></script>
     <script src="assets/js/axios.min.js"></script>
     <script src="assets/js/common.js"></script>
     <script src="assets/js/vue.js"></script>

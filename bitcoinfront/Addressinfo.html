@@ -15,6 +15,14 @@
 
 <body>
     <div id="app">
+            <div id="AddressQRCode" left></div>
+        <div style="position: absolute;
+        top: 0px;
+        right: 20;
+        width: 100%;
+        left: 140px;
+        ">
+
         <el-popover placement="top-start" width="400" trigger="hover"
             content="Unique identifier used to identify a particular address">
             <el-link type="primary" slot="reference">Address</el-link>
@@ -51,12 +59,20 @@
             <el-link type="primary" slot="reference"> Final Balance </el-link>
         </el-popover>: {{addressinfo.balance}}
         <el-divider></el-divider>
+            
+</div>
         <br>
         <br>
         <br>
 
       
-        <div v-for="tx in txPageinfo.list">
+        <div v-for="tx in txPageinfo.list" style="position: absolute;
+         top: 400px;
+        right: 20;
+        width: 100%;
+        left: 140px;
+        "
+        >
 
             <div class="sc-1myx216-0 iygrgv">
 
@@ -334,7 +350,7 @@
     </div>
 
     </div>
-
+    <script src="assets/qrcode.min.js"></script>
     <script src="assets/js/axios.min.js"></script>
     <script src="assets/js/common.js"></script>
     <script src="assets/js/vue.js"></script>

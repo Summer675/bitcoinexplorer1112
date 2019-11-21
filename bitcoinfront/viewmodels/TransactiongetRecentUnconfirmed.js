@@ -14,6 +14,9 @@ var app = new Vue({
                 console.log(frame);
                 this.stompclient.subscribe('/bitcoin/deltaTx', function (data) {
                     console.log(data)
+                   var newTransactions= JSON.parse(data.body);
+                    app.TransactionUnconfirmed=newTransactions.concat(app.TransactionUnconfirmed);
+                    //[..newT。。，..Tr。。。]
                 });
             });
 
