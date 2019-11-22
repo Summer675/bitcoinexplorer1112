@@ -88,5 +88,10 @@ public class BlockServiceImp implements BlockService {
     public Block getblockDetailByHeight(Integer height) {
         return null;
     }
-
+    @Override
+    public String getBlockhashByHeight(Integer height) {
+        JSONObject blockJson = bitcoinRest.getBlockhashByHeight(height);
+        String blockhash = blockJson.getString("blockhash");
+        return blockhash;
+    }
 }

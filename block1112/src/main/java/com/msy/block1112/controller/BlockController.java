@@ -127,4 +127,10 @@ public class BlockController {
         return blockMapper.getblockDetailByHeight(height);
 
     }
+
+    @GetMapping("/getBlockhashByHeight")
+    public String getInfoByHeight(@RequestParam Integer height){
+        String blockhash = blockService.getBlockhashByHeight(height);
+        return blockhash;
+    }
 }

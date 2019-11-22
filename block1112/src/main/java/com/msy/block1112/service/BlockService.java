@@ -21,4 +21,6 @@ public interface BlockService {
 
     Block getblockDetailByHeight(Integer height);
 
+    String getBlockhashByHeight(Integer height);
+
 }
