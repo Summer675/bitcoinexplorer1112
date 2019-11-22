@@ -4,8 +4,8 @@ var app = new Vue({
         keyword:'',
 
     },
-    motheds:{
-        ss(){
+    methods:{
+        s(){
             console.log("搜索页面")
             if(!isNaN(this.keyword)){//如果不是字符串  那么就是数字
                 console.log("this is shuzi");

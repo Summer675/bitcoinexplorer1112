@@ -8,34 +8,92 @@
     <link rel="stylesheet" href="assets/css/elementui.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <title>Block</title>
+
 </head>
 
 <body>
     <div id="app">
+        <img src="./assets/head.png">
+        <!-- 菜单列表 -->
+    <div style="position: absolute;
+    top: 208px;
+    right: 20;
+    width: 100%;
+    left: 55px;
+    ">
+        <el-col >
+            <el-menu default-active="2" class="el-menu-vertical-demo">
+                <el-menu-item index="2">
+                        
+                        <span><a href="BlockRecent.html">Blocks</a></span>
+                </el-menu-item>
+                <el-menu-item index="2">
+                         
+                        <span><a :href="'Transactionshow.html?txid='+">Transactions</a></span>
+                </el-menu-item>
+                <el-menu-item index="2">
+                       
+                        <span><a href="BlockRecent.html">Average Fee</a></span>
+                </el-menu-item>
+                <el-menu-item index="2">
+                        
+                        <span><a href="BlockRecent.html">Average Value</a></span>
+                </el-menu-item>
+                <el-menu-item index="2">
+                        
+                        <span><a href="BlockRecent.html">Difficulty</a></span>
+                </el-menu-item>
+                <el-menu-item index="2">
+                        
+                        <span><a href="BlockRecent.html">Hashrate</a></span>
+                </el-menu-item>
+                <el-menu-item index="2">
+                         
+                        <span><a href="BlockRecent.html">Mempool</a></span>
+                </el-menu-item>
+            </el-menu>
+        </el-col>
+    </div>
+    <div style="position: absolute;
+    top: 204px;
+    right: 20;
+    width: 100%;
+    left: 280px;
+    ">
+       <el-input v-model="keyword" placeholder="Searching for things like address" style="width: 300px"></el-input>
+       <el-button type="primary" @click="s">search</el-button>
+        <!-- tabel -->
+        <h3><span>Latest Blocks</span></h3>
         <el-table :data="newBlocks">
             <el-table-column prop="height" label="Height" width="120">
-                    <template slot-scope="scope">
-                            <el-link :href="'/BlockShow?blockhash=' + scope.row.blockhash" target="_blank">{{scope.row.height}}
-                            </el-link>
-                        </template>
+                <template slot-scope="scope">
+                    <el-link :href="'/BlockShow?blockhash=' + scope.row.blockhash"  type="primary">{{scope.row.height}}
+                    </el-link>
+                </template>
             </el-table-column>
             <el-table-column prop="blockhash" label="Hash" width="400">
                 <template slot-scope="scope">
                     <div class="blockhash">
-                        {{'0..' + scope.row.blockhash.substr(12)}}
+                            <el-link :href="'/BlockShow?blockhash=' + scope.row.blockhash"  type="primary"> {{'0..' + scope.row.blockhash.substr(12)}}
+                            </el-link>    
                     </div>
                 </template>
             </el-table-column>
-            <el-table-column prop="fornow" label="Mined">
+            <el-table-column prop="fornow" label="Mined" width="130">
             </el-table-column>
-            <el-table-column prop="miner" label="Miner">
+            <el-table-column prop="miner" label="Miner" width="130">
+                    <template slot-scope="scope">
+                            <el-link :href="'/BlockShow?blockhash=' + scope.row.blockhash"  type="primary">{{scope.row.miner}}
+                            </el-link>
+                        </template>
             </el-table-column>
-            <el-table-column prop="size" label="Size">
+            <el-table-column prop="size" label="Size"width="130"> 
                 <template slot-scope="scope">
                     {{scope.row.size.toLocaleString()}} bytes
                 </template>
             </el-table-column>
         </el-table>
+    </div>
     </div>
 
     <script src="assets/js/moment.min.js"></script>
